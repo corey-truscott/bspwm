@@ -1,0 +1,130 @@
+####################
+# opening programs #
+####################
+
+# terminal emulator
+super + Return
+	alacritty
+
+# program launcher
+super + d
+	dmenu_run -c -l 30 -p "run: " || dmenu_run -p "run: "
+
+# file manager
+super + shift + e
+  pcmanfm
+
+# web browser
+super + w
+	firefox
+
+# calculator
+super + c
+  alacritty --class "float" --command R
+
+# audio control
+super + a
+  alacritty --class "float" --command pulsemixer
+
+# process manager
+super + b
+  alacritty --class "float" --command htop
+
+# spotify
+super + alt + s
+	LD_PRELOAD=/usr/local/lib/spotify-adblock.so spotify
+
+##################
+# bspwm keybinds #
+##################
+
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# restart sxhkd
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# close and kill
+super + q
+	bspc node -{c,k}
+
+# swap the current node and the biggest window
+super + g
+	bspc node -s biggest.window
+
+# new wallpaper
+super + shift + w
+  xwallpaper --zoom $(ls $HOME/pics/wallpaper/* | shuf -n 1)
+
+#####################
+# state/flag chanes #
+#####################
+
+# fullscreen/floating/tiling
+super + {t,p,f}
+	bspc node -t {tiled,floating,fullscreen}
+
+# sticky a window
+super + ctrl + s
+	bspc node -g sticky
+
+##############
+# focus/swap #
+##############
+
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#############
+# preselect #
+#############
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+###############
+# move/resize #
+###############
+
+# expand/contract a window 
+super + alt + {h,j,k,l}
+  bspc node -z {left -40 0 || bspc node -z right -40 0, \
+                bottom 0 40 || bspc node -z top 0 40,\
+                top 0 -40 || bspc node -z bottom 0 -40,\
+                right 40 0 || bspc node -z left 40 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# volume control
+XF86AudioRaiseVolume
+  pulsemixer --change-volume +5
+
+XF86AudioLowerVolume
+  pulsemixer --change-volume -5
+
+XF86AudioMute
+  pulsemixer --toggle-mute
+
+# vim: set ft=sxhkdrc:

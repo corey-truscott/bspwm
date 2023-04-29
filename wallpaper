@@ -1,0 +1,3 @@
+#!/bin/bash
+
+xwallpaper --zoom $(/bin/ls $HOME/pics/wallpaper/* | shuf -n 1)

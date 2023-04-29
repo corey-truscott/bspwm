@@ -1,0 +1,12 @@
+#!/bin/bash
+
+brightnessctl set 100%
+setxkbmap us
+setxkbmap -option caps:escape
+xset r rate 300 50 &
+xset -dpms
+xset s noblank
+xset s off
+
+xinput --set-prop 'pointer:''Glorious Model O' 'libinput Accel Profile Enabled' 0, 1
+xinput --set-prop 'pointer:''Glorious Model O' 'libinput Accel Speed' 0

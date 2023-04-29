@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source "$HOME/.config/bspwm/autostart" &
+source "$HOME/.config/bspwm/monitors" &
+source "$HOME/.config/bspwm/settings" &
+source "$HOME/.config/bspwm/wallpaper" &
+source "$HOME/.config/bspwm/wm-settings" &

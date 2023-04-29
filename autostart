@@ -1,0 +1,24 @@
+#!/bin/bash
+
+killall "sxhkd"
+sxhkd -c $HOME/.config/bspwm/sxhkd/sxhkdrc &
+
+mullvad-vpn &
+
+killall "polybar"
+sh "$HOME/.config/bspwm/polybar/launch.sh" &
+
+killall "dunst"
+dunst &
+
+
+killall "flameshot"
+ flameshot &
+
+picom &
+
+killall "syncthing"
+syncthing
+
+killall -9 "polkitd"
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
